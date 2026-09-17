@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>KeepAlive</key>
+	<true/>
+	<key>Label</key>
+	<string>com.8x.fathom-agent-capture</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/Library/Frameworks/Python.framework/Versions/3.13/bin/python3</string>
+		<string>/Users/macbookpro/Documents/GitHub/fathom-rebuild/scripts/capture.py</string>
+		<string>--watch</string>
+	</array>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>StandardErrorPath</key>
+	<string>/tmp/fathom-agent-capture.err</string>
+	<key>StandardOutPath</key>
+	<string>/tmp/fathom-agent-capture.out</string>
+	<key>WorkingDirectory</key>
+	<string>/Users/macbookpro/Documents/GitHub/fathom-rebuild</string>
+</dict>
+</plist>

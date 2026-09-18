@@ -2,9 +2,12 @@
 
 Research date: **2026-09-18 Asia/Karachi / 2026-09-17 UTC**. Phase: reconnaissance only. No application code or architecture decision has been made.
 
+**Updated 2026-09-18 UTC:** The user supplied three full screenshots and an 80-minute recording's linked summary. The shared page was also inspected while logged out. See [the evidence update](USER-EVIDENCE-2026-09-18.md) and [preserved summary](USER-STANDUP-SUMMARY.md). U1–U4 and D2 below refer to that update. This resolves the top navigation, two-column meeting layout, summary structure and action-item appearance; section 12 now contains the reduced evidence request.
+
 ## Evidence standard and scope
 
 - **D — Directly observed:** live public surface accessed during this session, including the sign-in screenshot.
+- **U — User-supplied visual/text evidence:** directly visible in supplied screenshots/export; not an interaction exercised by the agent.
 - **O — Officially documented:** current accessible Fathom help/product material. This verifies what Fathom documents, not that the behavior was exercised in an authenticated account.
 - **O-image — Official reference image:** visually inspected image embedded in an official article. Its capture date and product build are unknown unless stated. These are not fresh authenticated screenshots.
 - **I — Inferred/proposed:** a working interpretation or assignment recommendation, not a Fathom fact.
@@ -38,20 +41,20 @@ Native capture is running and the complete inline assignment prompt is in `.agen
 | Deals / team intelligence | O | Deal context, account-wide questions, AI Search and Trackers; plan-dependent. [S8–S9] |
 | Settings | O | Capture/share defaults, conferencing connections, integrations, installed apps, highlight types. [S3] |
 
-**X:** No full authenticated shell was directly observed. A left sidebar, its width, item order, collapse behavior, sticky regions, and account-menu placement are not established. Documentation often says “tab”; that is not evidence of a modern left navigation rail.
+**U1:** The supplied web shell has a top bar with logo, recording search, Refer, Settings, Help & Feedback, points and avatar. A second horizontal row contains My Calls, Team Calls, Playlists, Alerts and Deals. There is no left sidebar in this view. Sticky behavior and responsive navigation remain X. [Evidence update](USER-EVIDENCE-2026-09-18.md)
 
 ## 2. Screen inventory and dashboard
 
 | Screen/state | Verified content | Missing evidence |
 |---|---|---|
 | Sign-in | Public screenshot at 1440 × 1000 [R1] | Mobile sign-in behavior |
-| My Calls / Team Calls | Libraries and shared-call access [S7] | Current full layout, card versus row density, grouping, hover actions |
+| My Calls / Team Calls | My Calls empty shell/onboarding now visible [U1]; shared-call access documented [S7] | Populated card versus row density, grouping, hover actions |
 | Search results | Transcript match grouped under a meeting; speaker excerpt and Play control [R2] | Current result ranking, result limits, loading and empty state |
-| Meeting default view | Presence of recording/summary/transcript surfaces [S7–S11] | Full-page anatomy, initially selected tab, metadata order |
+| Meeting shared view | Two-column player/content + title/date/actions [U2–U3/D2] | Owner-only controls and first-open defaults without query |
 | Transcript hover / highlight | Highlight range and annotation menu [R3–R4] | Current speaker block appearance, hover trigger area |
 | Template customization | Selector, modal, generated-state banner [R5–R7] | Full template menu, generation progress, error states |
 | Share dialog | Audience selector, people, role dropdown, Copy Link [R8–R9] | Current external clip recipient view |
-| Calendar / upcoming | Connection and upcoming meeting concept [S2] | Exact connection screens and meeting rows |
+| Calendar / upcoming | Next external meeting and recording/sharing preferences displayed [U1] | Connection interaction and calendar settings screens |
 | Recording / processing | Mode selection and live-to-final transition [S4] | Actual joining, recording, failed and processing visuals |
 
 **O-image:** The library search screenshot contains a TODAY group, a rounded charcoal meeting row, meeting title, calendar date, a transcript-match count, an icon and a circular person avatar. A speaker-attributed excerpt follows with the search term in cyan and an outlined Play button. It contains **March 5, 2025** in the image, so it is explicitly historical reference evidence. [R2]
@@ -80,20 +83,20 @@ This is an evidence map, **not an invented wireframe**.
 
 | Region | Established anatomy | Status / uncertainty |
 |---|---|---|
-| Header | Share entry below meeting title [S15] | O; date, duration, owner, breadcrumb and overflow order X |
+| Header | Title/date at top of right column; Share below [U2–U3] | U; owner, breadcrumb and overflow variants X |
 | Attendees | Right-side Attendees list in documented CRM-enabled call view [S22] | O; eight-person overflow and avatar treatment X |
-| Player | A call video is available in the recording view [S7] | O; dimensions, aspect ratio, speed, skip, volume, fullscreen and pinning X |
-| Content tabs | Summary and Transcript labels; active cyan Summary underline in crop [R5] | O-image; exact tab placement depends on view/version |
-| Ask Fathom | Right-side panel beside Summary; also library/folder contexts [S9] | O; exact full arrangement X |
-| Summary tools | Pill-shaped type selector, chevron, gear and nearby language selector [R5] | O-image |
-| Transcript | Bubble-based content; plus at left on hover; range annotations [S12, R3] | O/O-image; normal speaker/timestamp styling X |
+| Player | Above left-column content; roughly 16:9 [U2–U3]; volume/time/timeline/1×/display control visible [D2] | U/D; actual playback, speed and display changes untested |
+| Content tabs | Summary, Transcript and Ask Fathom directly under player [U2–U3] | U; cyan active text/underline |
+| Ask Fathom | Tab under player in this shared call [U2–U3]; other placements documented [S9] | U/O; tab contents not yet inspected |
+| Summary tools | Enhanced and Auto selectors + Copy Summary [U3]; EN language selector in logged-out view [D2] | U/D; Auto meaning and full menu unverified |
+| Transcript | Speaker-labelled gray chat bubbles, left/right groups, search field [U2]; hover/range documented [S12] | U/O; active-playback styling and click behavior X |
 | Copy | Copy Transcript is above transcript [S18] | O; toast/clipboard payload format X |
-| Action items | Separate section; automatic extraction can be enabled [S3] | O; assignee UI and row density X |
+| Action items | Right column: checkboxes, bold task text, source time, yellow assignee; copy/export buttons [U2–U3] | U; edit/assignment/persistence behavior X |
 | Annotations | Right-side clip card with type, duration, summary, play triangle, link and ellipsis [R4] | O-image |
 | Clip overflow | Delete annotation, download MP4 clip, add to playlist [R4] | O-image; permission/version dependent |
 | Sharing | People/access list plus separate audience and copy-link controls [R8] | O-image |
 
-**X:** No evidence yet establishes a persistent three-column layout or transcript under the player in the current account. The available crops establish local components, not their whole-screen spatial relationship. We need one current full meeting screen before fixing the layout.
+**U2–U3/D2:** The shared meeting layout is now established: centered two-column workspace, player then content tabs on the left, title/date/Share/action items/screen-sharing events/questions on the right. Approximate column ratio is 60:40. This is not proof of an identical owner/editor view. [Evidence update](USER-EVIDENCE-2026-09-18.md)
 
 ## 5. Visual design system observations
 
@@ -120,7 +123,7 @@ This is an evidence map, **not an invented wireframe**.
 
 The dark/light FAQ says switching was unavailable, but its edit date is August 2025. Treat it as historical guidance, not a verified statement about every 3.0+ surface. [S20]
 
-**I:** Dark canvas with restrained cyan actions is a defensible visual starting direction for discussion. Exact tokens, sidebar dimensions, and component sizes should wait for the user's current full-screen evidence. No font or layout has been selected.
+**U1–U3:** User screenshots now corroborate the dark/cyan treatment and establish top navigation rather than a left sidebar. **I:** Use their centered workspace and column proportions for fidelity discussion; exact font, CSS tokens and responsive behavior remain unmeasured. No implementation layout has been selected.
 
 ## 6. Interaction behavior: transcript and playback
 
@@ -130,7 +133,7 @@ The dark/light FAQ says switching was unavailable, but its edit date is August 2
 | Transcript sentence click | X: not directly tested; do not assume every text click seeks |
 | Transcript timestamp click | I: likely a navigation affordance, but exact behavior and play/pause preservation unverified |
 | Active segment | X: current highlight style, word versus block tracking, and timing precision unknown |
-| Auto-scroll | X: following behavior, interruption after manual scroll, and return-to-playhead control unknown |
+| Auto-scroll | D2: rendered DOM contains Resume Auto-Scroll; X: when it appears and how following resumes remain untested |
 | Speaker identity | O: product material promises speaker attribution; Zoom capture mode can affect it. [S5, S23] |
 | Hover actions | O: plus for highlight; transcript ellipsis for trimming. [S12, S17] |
 | Highlight range | O: resize by dragging through transcript; O-image: vertical handles and colored bubbles. [S12, R3] |
@@ -157,7 +160,7 @@ The documented trimming operation is destructive, so it is not needed for the us
 
 **O:** Action items include assignment; documented task integrations support changing text, completion state, creating/deleting items and source-moment links. The transcript plus can create an Action Item. [S11, S21–S22]
 
-**X:** Need to inspect actual summary headings/bullets, embedded timestamps, sentence editing controls, assignee picker, deadline support, and action-item checkboxes. Timestamped AI citations and task-source links do **not** establish that every summary bullet is linked. Template selection's automatic regeneration, caching, undo, edit preservation, and persistence are also untested.
+**U3/U4:** Enhanced summary structure is now verified: Meeting Purpose, Key Takeaways, Topics with nested sections, and Next Steps. Pasted summary bullets link to recording URLs with `tab=summary` and numeric `timestamp` seconds. Structured action items visibly have checkboxes, timestamps and assignees; summary Next Steps are a separate list. **X:** Source-link playback behavior, summary editing, assignee picker, deadlines, template regeneration/caching/edit preservation and persistence still need interaction evidence. [Evidence update](USER-EVIDENCE-2026-09-18.md)
 
 ## 9. Highlights, clips and sharing
 
@@ -169,11 +172,11 @@ The documented trimming operation is destructive, so it is not needed for the us
 
 **O:** Full recordings have link audiences (public-link, same-domain, explicitly added) separate from role levels. Limited viewers see reduced sharing information; standard/admin roles grant different capabilities. The Share dialog reflects that distinction. [S15, R8–R9]
 
-**O:** Fathom explicitly documents viewing a shared recording without creating an account, subject to link/team restrictions. [S19] **X:** A real public clip URL was not available, so recipient branding, duration boundaries, transcript visibility, access inheritance and whether the rest of the call is exposed remain unverified. Do not assume a clip is a security boundary around the full recording.
+**D2:** The supplied full-recording link now loads without authentication, displaying summary/action items and exposing transcript content in the rendered page. Its header has signup and Sign In instead of authenticated navigation. Actual media playback was not verified because the player was loading. **X:** A highlight clip URL is still needed for clip boundaries, recipient controls, access inheritance and full-call exposure. A full-recording link is not a clip-security test. [Evidence update](USER-EVIDENCE-2026-09-18.md)
 
 ## 10. Large-meeting considerations
 
-**X:** No real ~60-minute/eight-person recording was accessible. There is no verified claim here about Fathom transcript virtualization, performance, participant overflow or long-call summary truncation.
+**U4/D2:** An 80-minute recording is now available, including hour-plus action-item timestamps and a long summary/transcript. At least three speaker names occur in the rendered transcript. **X:** Eight participants, transcript virtualization, performance, participant overflow and long-call usability are not established simply by loading this recording.
 
 **O:** Zoom Live Stream documentation says gallery recording can mirror gallery view, but screen sharing records the shared screen and speaker. The resulting video layout is capture-dependent; eight attendees do not prove an eight-tile player UI. [S24]
 
@@ -193,24 +196,23 @@ An existing long recording is sufficient research evidence. The user need not st
 
 | Confidence | Findings |
 |---|---|
-| D | Live sign-in appearance; available sign-in providers; marketing redirect; authenticated route redirects |
+| D / U | Live sign-in; marketing/auth redirects; user-supplied top navigation, empty library, two-column shared meeting, summary export, task appearance; live logged-out full-recording content |
 | O / O-image | Main named surfaces; calendar/capture choices; documented search seeking; summary customization; highlight creation/range; share controls; action-item capabilities; official local component appearance |
 | I | Meeting detail is the best centerpiece; coherent long seeded meeting is valuable; typography/layout direction remains provisional |
-| X | Current full app shell, precise visual tokens, player controls, live transcript navigation/scrolling, summary source links, clip recipient interaction, eight-person responsiveness |
+| X | Populated library, precise visual tokens, playback/scrolling behavior, source-link seeking, template/task editing, clip recipient interaction, eight-person responsiveness |
 
 Reference images are stored locally with source URLs in [references/assets.json](references/assets.json) and provenance in [references/README.md](references/README.md). No third-party screenshot has been treated as current evidence. An official Loom embed was located through AI Search documentation, but the video could not be retrieved through web access; it was not treated as watched evidence. A marketing AVIF was downloaded to `/tmp` but could not be decoded by available image tools; it is not used as visual evidence.
 
 ## 12. Minimum missing evidence from the user
 
-Use one non-sensitive existing meeting for steps 1–4, ideally close to an hour with several participants. Keep browser zoom at 100% and include the whole browser content area. A short screen recording can replace multiple screenshots.
+Updated after U1–U4/D2. The full shell, meeting layout, summary structure, action-item appearance and basic logged-out recording access are covered. Do not repeat those screenshots. Detailed steps are in [the reduced checklist](USER-EVIDENCE-2026-09-18.md#reduced-manual-checklist).
 
-1. **Current shell + meeting layout.** Open `https://fathom.video/home` and take one full-window screenshot. Open a completed meeting and take one full-window screenshot with its default tab. If it has many attendees, open the attendee list/overflow once. Tell me whether this is web or desktop and which plan/version is shown. These two images are the highest-priority evidence.
-2. **Playback + summary.** In that meeting, select Transcript. Start playback, click a timestamp well ahead, then click ordinary transcript text elsewhere. Report whether each seeks and whether playback continues. While playing, scroll away for five seconds and show whether it follows or offers a return control. Open Summary, capture the template dropdown, switch to Project Update or another available template, and show the result including action items. Click one source timestamp if present; show one action-item edit/assignee control. A 60–90 second recording covers most of this.
-3. **Search.** Return to My Calls; search a distinctive word spoken in the meeting but absent from its title. Screenshot the result and click its Play/open control. Report where it lands. If available, also show the AI Search entry below the standard results; no need to configure trackers.
-4. **Clip recipient.** Return to the transcript, hover a short passage → plus → Highlight. Drag its range once. Screenshot the resulting annotation, click its link icon, and open that link in a private/incognito window. Capture that recipient screen; report whether it asks for sign-in, stops at clip end, or exposes the full recording. Use a harmless test segment. A shareable non-sensitive test link would let me inspect the public experience directly.
-5. **Calendar + live capture, only missing pieces.** Open `https://fathom.video/customize`; screenshot calendar/conferencing and capture preferences. If not connected, show the connect entry and authorization screen as you connect your test calendar; no disconnect/reconnect needed for an existing account. For in-call evidence, use an existing capture if you have one; otherwise start a 2–3 minute test meeting, show the pre-call mode/joining state, mark a Highlight if the UI offers it, then end the call and show where it appears. If the new experience has no Highlight button, screenshot the available panel and report that absence rather than switching versions just for this test.
+1. **Playback:** A short recording showing transcript click-to-seek, the active segment, scrolling away/resuming auto-scroll, and clicking one summary source link.
+2. **Templates/tasks:** Open Enhanced and Auto menus, change template, and show what regenerates. On an owned test recording, show task checkbox/edit/assignee behavior; report read-only restrictions on this shared call.
+3. **Highlight/clip:** Create and resize one highlight on an owned test recording. Show its annotation and open the clip link in incognito, or provide a non-sensitive test clip link. The supplied recording explicitly has no highlights.
+4. **Capture/library/search:** A short test call can supply joining/in-call evidence and a populated My Calls screenshot. Also show connected calendar/conferencing/capture settings, then search for a spoken word absent from the test call's title. Use existing connection state; no calendar disconnect is needed.
 
-**Optional after the above:** narrow the same meeting window to ~390 pixels and capture the result. If no long meeting is available, say so; use a short meeting for behavior and keep long-meeting behavior classified as unverified.
+Optional: an existing eight-person attendee view and one narrow-window screenshot. No new hour-long meeting is required solely for research. The current 80-minute recording is sufficient long-content reference, while eight-person and performance behavior remain unverified.
 
 ## Initial product opinion — for discussion, not approved scope
 
@@ -218,7 +220,7 @@ Use one non-sensitive existing meeting for steps 1–4, ideally close to an hour
 
 The strongest candidates are synchronized playback/transcript, useful source-linked summaries with meaningful template differences, editable action items, cross-meeting transcript search, and a working unauthenticated clip recipient view. A compact calendar/capture simulation can make the beginning of that journey understandable while honoring the explicit permission to stub the recording bot.
 
-Defer enterprise administration, deep CRM synchronization, deal coaching, tracker subscriptions, playlists and broad account-wide AI until the central journey is strong. These are initial tradeoffs only. Confirm the current full-screen evidence and choose scope together before architecture or implementation.
+Defer enterprise administration, deep CRM synchronization, deal coaching, tracker subscriptions, playlists and broad account-wide AI until the central journey is strong. These are initial tradeoffs only. The current shared-view layout is now evidenced; choose scope together before architecture or implementation.
 
 ## Source register
 

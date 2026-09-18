@@ -15,3 +15,17 @@ Collected 2026-09-17 UTC / 2026-09-18 Asia/Karachi. Reference-only material; not
 | R9 | [Limited sharing access](official-sharing-13.jpeg) | Same sharing article. Image build/capture date unknown. |
 
 Do not derive exact CSS font sizes, layout widths, or pixel-perfect design tokens from scaled article crops. Current authenticated screenshots must supersede these where they differ.
+
+## User evidence and live shared-page update — 2026-09-18
+
+| ID | File | Provenance |
+|---|---|---|
+| U1 | [My Calls empty state](user-standup-1.png) | User-supplied original PNG, 3360 × 1702; exact capture time/browser zoom unknown. |
+| U2 | [Shared call transcript](user-standup-2.png) | User-supplied original PNG, 3360 × 1702. |
+| U3 | [Shared call summary](user-standup-3.png) | User-supplied original PNG, 3360 × 1702. |
+| U4 | [Pasted linked summary](../USER-STANDUP-SUMMARY.md) | User message excerpt preserved verbatim; summary, not transcript. |
+| D2 | [Live logged-out shared call](live-shared-standup.png) | Isolated Chrome capture, 1440 × 1000, 2026-09-18; no login; player still loading. |
+
+Source: https://fathom.video/share/zPzse1RWs4x9L5MypHtoN-Vbwo3h3x9s?tab=summary
+
+The December 3, 2024 date belongs to the meeting. It is not a capture date for these screenshots. See [the evidence update](../USER-EVIDENCE-2026-09-18.md) for what was and was not verified. Real meeting content is retained as user-requested research evidence, not selected as the clone's public seed dataset.

@@ -34,7 +34,8 @@ const transcript: Segment[] = Array.from({ length: 64 }, (_, index) => {
   const [speaker, base] = showcaseLines[index % showcaseLines.length];
   const cycle = Math.floor(index / showcaseLines.length);
   const start = index * 54 + cycle * 2;
-  return { id: `atlas-${index + 1}`, speaker, start, end: start + 42, chapter: cycle < 2 ? 'Beta readiness' : cycle < 3 ? 'Launch plan' : 'Decisions', text: cycle ? `${base} This is part of the ${cycle + 1}th review pass, and we are keeping the decision and its evidence connected for the team.` : base };
+  const pass = ['first', 'second', 'third', 'final'][cycle];
+  return { id: `atlas-${index + 1}`, speaker, start, end: start + 42, chapter: cycle < 2 ? 'Beta readiness' : cycle < 3 ? 'Launch plan' : 'Decisions', text: cycle ? `${base} In this ${pass} review pass, we are keeping the decision and its evidence connected for the team.` : base };
 });
 
 const atlas: Meeting = {

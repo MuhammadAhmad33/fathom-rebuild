@@ -1,2 +1,11 @@
 __pycache__/
 *.py[cod]
+node_modules/
+.next/
+out/
+.env*
+!.env.example
+.vercel/
+*.tsbuildinfo
+test-results/
+playwright-report/

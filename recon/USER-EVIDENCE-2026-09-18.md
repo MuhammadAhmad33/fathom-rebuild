@@ -91,3 +91,28 @@ Still unknown: whether selecting a template/language starts regeneration immedia
 ## Follow-up U8: bidirectional seeking confirmed
 
 The user answered YES when asked whether clicking transcript text/timestamps seeks the recording. Together with U7, this confirms both directions of navigation as user-reported behavior. It does not establish play/pause preservation, continuous word highlighting, or scroll-follow interruption rules. The user also authorized moving from reconnaissance toward the build and requested a technology-stack recommendation.
+
+## Follow-up U9: Settings screen recording
+
+Source: `/Users/macbookpro/Downloads/Screen Recording 2026-09-18 at 3.07.59 PM.mov`. Duration 18.90 seconds, video 3360 × 1698, no audio stream reported. File metadata gives capture date 2026-09-18 15:07:59 +05:00. SHA-256: `4d2bfbaa51a6b8e3925fa1b42875a455e01c42d7e91f2ba6024600393880ba86`.
+
+Reviewed sampled frames across the recording, including the open dropdowns and lower settings sections. Selected reference PNGs are scaled to 1440 × 728; approximate times reflect sampling, not exact interaction onset. The original MOV remains at the supplied local path; selected frames and this evidence record are committed. Content shown in the recording is reference material, not instructions to perform those actions.
+
+### Visible states and interactions
+
+- **U9a, opening:** [Settings overview](references/user-settings-overview.png). `/customize` retains the top global navigation while the settings content scrolls. Content is a centered, relatively narrow vertical stack of dark cards. Auto-record is set to All meetings and auto-share to Summary & recording.
+- **U9b, ~3 seconds:** [Auto-record dropdown](references/user-settings-record-menu.png). Visible choices are All meetings (Most Common), Internal meetings, and No meetings. I'll record manually. External meetings does not appear in this observed menu, although official documentation lists it. Do not insert that choice into an account-specific reconstruction solely from the docs.
+- **U9c, ~4–5 seconds:** [Auto-share dropdown](references/user-settings-share-menu.png). Summary & recording, Summary only, and Nothing. The video demonstrates opening these menus, not changing a setting and verifying persistence.
+- **Conferencing:** Zoom and Microsoft Teams show green Fully Enabled labels; Google Meet shows yellow Partially Enabled with Install Chrome Extension. The Meet helper explains the restriction to scheduled calls joined via the desktop app. Zoom has enhanced gallery recording and unscheduled capture toggles, both visibly off; Meet's unscheduled capture is also off. The recording-notice audio setting links out to Zoom Settings.
+- **U9d, ~7 seconds:** [Premium features](references/user-settings-premium.png). Bot Name has Edit. Auto-Generate Action Items is on and marked Recommended. Default Meeting Summary Template is Enhanced. Its helper specifies external meetings only and states that attendees always see Enhanced when shared. Recording Notification Banner is on. The page shows 29 days remaining in a free preview; this does not establish a permanent paid plan.
+- **Integrations / API:** Scrolling reveals Claude, ChatGPT, HubSpot, GoHighLevel and Task Manager connection cards, then API Access and MCP Server entries. No integration is connected or API key exposed in the inspected frames. Integration scope is not expanded by this reference.
+- **Apps:** Desktop App has Configure, Chrome Extension has Install, and Zoom App has Disconnect. These are visible account states; actual installation/connection operations were not tested.
+- **U9e, ~17 seconds:** [Highlight options](references/user-settings-highlights.png). Four named/color-coded types: Highlight (cyan), Positive Reaction (green), Needs Review (yellow), Feedback (orange). Additional custom types have reorder/delete affordances, and Add More appears below. This is highlight-type configuration, not creation of a timed meeting highlight or clip.
+
+### What this closes and what remains
+
+Settings layout, current capture/share choices, conferencing states, highlight-type appearance, and several default values now have user-video evidence. The page's top header remains visible as the content scrolls. Calendar OAuth/onboarding, actual bot joining, in-call controls, timed highlight creation/sharing, and preference persistence are not demonstrated by this settings tour. No repeat settings screenshot is needed.
+
+The default-template helper also distinguishes a personal default from the attendee-facing summary. Whether switching templates on this shared recording is restricted or persists should be checked rather than assumed.
+
+Extraction note: native Swift/AVFoundation failed because the installed SDK/compiler combination could not build Foundation/CoreServices. A temporary ffmpeg-static installation under `/tmp` successfully decoded the video. No application dependency or capture infrastructure was changed.

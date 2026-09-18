@@ -2,7 +2,7 @@
 
 Research date: **2026-09-18 Asia/Karachi / 2026-09-17 UTC**. Phase: reconnaissance only. No application code or architecture decision has been made.
 
-**Updated 2026-09-18 UTC:** The user supplied three full screenshots and an 80-minute recording's linked summary. The shared page was also inspected while logged out. See [the evidence update](USER-EVIDENCE-2026-09-18.md) and [preserved summary](USER-STANDUP-SUMMARY.md). U1–U7 and D2 below refer to that update. The follow-up also confirms the template/language menus and user-reported player-to-transcript seeking. This resolves the top navigation, two-column meeting layout, summary structure and action-item appearance; section 12 now contains the reduced evidence request.
+**Updated 2026-09-18 UTC:** The user supplied three full screenshots and an 80-minute recording's linked summary. The shared page was also inspected while logged out. See [the evidence update](USER-EVIDENCE-2026-09-18.md) and [preserved summary](USER-STANDUP-SUMMARY.md). U1–U9 and D2 below refer to that update. The follow-up also confirms the template/language menus and user-reported player-to-transcript seeking. This resolves the top navigation, two-column meeting layout, summary structure and action-item appearance; section 12 now contains the reduced evidence request.
 
 ## Evidence standard and scope
 
@@ -39,7 +39,7 @@ Native capture is running and the complete inline assignment prompt is in `.agen
 | Meeting recording | O | Recording, transcript, notes/summary, highlights, action items, sharing, and Ask Fathom. [S7–S11, S15] |
 | Folders / Playlists | O | Folders organize full calls; playlists collect selected clips. [S16] |
 | Deals / team intelligence | O | Deal context, account-wide questions, AI Search and Trackers; plan-dependent. [S8–S9] |
-| Settings | O | Capture/share defaults, conferencing connections, integrations, installed apps, highlight types. [S3] |
+| Settings | U9 / O | User video now verifies `/customize` layout, capture/share menus, conferencing status cards, defaults and highlight-type settings. [S3, U9] |
 
 **U1:** The supplied web shell has a top bar with logo, recording search, Refer, Settings, Help & Feedback, points and avatar. A second horizontal row contains My Calls, Team Calls, Playlists, Alerts and Deals. There is no left sidebar in this view. Sticky behavior and responsive navigation remain X. [Evidence update](USER-EVIDENCE-2026-09-18.md)
 
@@ -75,7 +75,7 @@ Native capture is running and the complete inline assignment prompt is in `.agen
 
 **O:** New consumer-email sign-ups require a calendar meeting in the next seven days containing a supported conferencing link. The guide warns that failing this eligibility check can block that email from another free sign-up. If the user needs a new account, arrange that test event before starting sign-up. [S2]
 
-**O:** Settings distinguish capture scope (all, internal, external, none) from post-meeting sharing (summary plus recording, summary only, nothing). Connecting a calendar, recording a meeting, and granting recording access are separate product decisions. [S3]
+**O:** Documentation distinguishes capture scope (all, internal, external, none) from post-meeting sharing (summary plus recording, summary only, nothing). Connecting a calendar, recording a meeting, and granting recording access are separate product decisions. [S3] **U9:** The observed account menu contains All meetings, Internal meetings and manual recording; External meetings is not visible. The three sharing options are confirmed in the user video.
 
 ## 4. Detailed meeting-detail anatomy
 
@@ -213,7 +213,7 @@ Updated after U1–U4/D2. The full shell, meeting layout, summary structure, act
 1. **Playback:** Player → transcript seeking is now user-confirmed. Reverse transcript → player seeking is also user-confirmed (U8). Remaining: active-segment styling, scrolling away/resuming auto-scroll, and one summary source-link click.
 2. **Templates/tasks:** Menu screenshots are complete. Change template and show what regenerates/loading behavior. On an owned test recording, show task checkbox/edit/assignee behavior; report read-only restrictions on this shared call.
 3. **Highlight/clip:** Create and resize one highlight on an owned test recording. Show its annotation and open the clip link in incognito, or provide a non-sensitive test clip link. The supplied recording explicitly has no highlights.
-4. **Capture/library/search:** A short test call can supply joining/in-call evidence and a populated My Calls screenshot. Also show connected calendar/conferencing/capture settings, then search for a spoken word absent from the test call's title. Use existing connection state; no calendar disconnect is needed.
+4. **Capture/library/search:** Settings and conferencing state are now covered by U9; no repeat screenshot needed. A short test call can supply joining/in-call evidence and a populated My Calls screenshot. Search for a spoken word absent from its title. Calendar OAuth itself is still unobserved, but no calendar disconnect is needed for research.
 
 Optional: an existing eight-person attendee view and one narrow-window screenshot. No new hour-long meeting is required solely for research. The current 80-minute recording is sufficient long-content reference, while eight-person and performance behavior remain unverified.
 
@@ -255,3 +255,7 @@ All sources accessed during this research session. Dates below are the page's di
 | S22 | [HubSpot call view/actions](https://help.fathom.video/en/articles/448832) | 2026-08-20 |
 | S23 | [Current product overview](https://www.fathom.ai/overview) | Not displayed |
 | S24 | [Zoom gallery capture](https://help.fathom.video/en/articles/295552) | 2026-03-18 |
+
+## Settings video addendum
+
+[U9 evidence and selected frames](USER-EVIDENCE-2026-09-18.md#follow-up-u9-settings-screen-recording) resolve settings layout and menu states. The observed page uses a sticky top header and centered stacked cards. Highlight types are cyan Highlight, green Positive Reaction, yellow Needs Review and orange Feedback. The default-template helper says it applies to external meetings and shared attendees see Enhanced. Opening dropdowns is verified; saving changes, calendar connection, recording and timed highlight behavior remain separate evidence gaps.

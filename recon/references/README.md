@@ -38,3 +38,13 @@ The December 3, 2024 date belongs to the meeting. It is not a capture date for t
 - [Verbatim accompanying text](../USER-TEMPLATE-OBSERVATIONS.txt).
 
 No screenshot capture date, browser zoom or CSS pixel scale was independently verified.
+
+### U9 — Settings video, 2026-09-18
+
+Source file and hash, sampling limitations and observed states are recorded in [the settings evidence](../USER-EVIDENCE-2026-09-18.md#follow-up-u9-settings-screen-recording). Derived frames are resized, not original-resolution screenshots:
+
+- [Overview](user-settings-overview.png), near opening.
+- [Recording menu](user-settings-record-menu.png), approximately 3 seconds.
+- [Sharing menu](user-settings-share-menu.png), approximately 4–5 seconds.
+- [Premium settings](user-settings-premium.png), approximately 7 seconds.
+- [Highlight types](user-settings-highlights.png), approximately 17 seconds.

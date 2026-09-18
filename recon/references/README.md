@@ -29,3 +29,12 @@ Do not derive exact CSS font sizes, layout widths, or pixel-perfect design token
 Source: https://fathom.video/share/zPzse1RWs4x9L5MypHtoN-Vbwo3h3x9s?tab=summary
 
 The December 3, 2024 date belongs to the meeting. It is not a capture date for these screenshots. See [the evidence update](../USER-EVIDENCE-2026-09-18.md) for what was and was not verified. Real meeting content is retained as user-requested research evidence, not selected as the clone's public seed dataset.
+
+### Menu follow-up
+
+- U5: [Enhanced menu](user-template-menu.png) — original user-supplied PNG; upper menu visible. Full 16-template inventory supplied as text.
+- U6: [Summary language menu](user-language-menu.png) — original user-supplied PNG; Auto explicitly means transcript language.
+- U7: User reports that seeking the recording moves the transcript to the corresponding point. This is reported interaction evidence, not agent-tested playback.
+- [Verbatim accompanying text](../USER-TEMPLATE-OBSERVATIONS.txt).
+
+No screenshot capture date, browser zoom or CSS pixel scale was independently verified.

@@ -2,7 +2,7 @@
 
 Research date: **2026-09-18 Asia/Karachi / 2026-09-17 UTC**. Phase: reconnaissance only. No application code or architecture decision has been made.
 
-**Updated 2026-09-18 UTC:** The user supplied three full screenshots and an 80-minute recording's linked summary. The shared page was also inspected while logged out. See [the evidence update](USER-EVIDENCE-2026-09-18.md) and [preserved summary](USER-STANDUP-SUMMARY.md). U1–U4 and D2 below refer to that update. This resolves the top navigation, two-column meeting layout, summary structure and action-item appearance; section 12 now contains the reduced evidence request.
+**Updated 2026-09-18 UTC:** The user supplied three full screenshots and an 80-minute recording's linked summary. The shared page was also inspected while logged out. See [the evidence update](USER-EVIDENCE-2026-09-18.md) and [preserved summary](USER-STANDUP-SUMMARY.md). U1–U7 and D2 below refer to that update. The follow-up also confirms the template/language menus and user-reported player-to-transcript seeking. This resolves the top navigation, two-column meeting layout, summary structure and action-item appearance; section 12 now contains the reduced evidence request.
 
 ## Evidence standard and scope
 
@@ -52,7 +52,7 @@ Native capture is running and the complete inline assignment prompt is in `.agen
 | Search results | Transcript match grouped under a meeting; speaker excerpt and Play control [R2] | Current result ranking, result limits, loading and empty state |
 | Meeting shared view | Two-column player/content + title/date/actions [U2–U3/D2] | Owner-only controls and first-open defaults without query |
 | Transcript hover / highlight | Highlight range and annotation menu [R3–R4] | Current speaker block appearance, hover trigger area |
-| Template customization | Selector, modal, generated-state banner [R5–R7] | Full template menu, generation progress, error states |
+| Template customization | Selector, modal, generated-state banner [R5–R7] | Generation progress, output changes and error states; menu inventory now supplied [U5] |
 | Share dialog | Audience selector, people, role dropdown, Copy Link [R8–R9] | Current external clip recipient view |
 | Calendar / upcoming | Next external meeting and recording/sharing preferences displayed [U1] | Connection interaction and calendar settings screens |
 | Recording / processing | Mode selection and live-to-final transition [S4] | Actual joining, recording, failed and processing visuals |
@@ -88,7 +88,7 @@ This is an evidence map, **not an invented wireframe**.
 | Player | Above left-column content; roughly 16:9 [U2–U3]; volume/time/timeline/1×/display control visible [D2] | U/D; actual playback, speed and display changes untested |
 | Content tabs | Summary, Transcript and Ask Fathom directly under player [U2–U3] | U; cyan active text/underline |
 | Ask Fathom | Tab under player in this shared call [U2–U3]; other placements documented [S9] | U/O; tab contents not yet inspected |
-| Summary tools | Enhanced and Auto selectors + Copy Summary [U3]; EN language selector in logged-out view [D2] | U/D; Auto meaning and full menu unverified |
+| Summary tools | Enhanced and Auto selectors + Copy Summary [U3]; EN language selector in logged-out view [D2] | U/D; Auto = transcript language [U6]; template inventory supplied [U5] |
 | Transcript | Speaker-labelled gray chat bubbles, left/right groups, search field [U2]; hover/range documented [S12] | U/O; active-playback styling and click behavior X |
 | Copy | Copy Transcript is above transcript [S18] | O; toast/clipboard payload format X |
 | Action items | Right column: checkboxes, bold task text, source time, yellow assignee; copy/export buttons [U2–U3] | U; edit/assignment/persistence behavior X |
@@ -130,6 +130,7 @@ The dark/light FAQ says switching was unavailable, but its edit date is August 2
 | Interaction | Finding |
 |---|---|
 | Search-result Play | O: seeks to the matching spoken moment. [S7] |
+| Player seeking | U7: user reports recording seek also jumps transcript to the corresponding point; independently exercised behavior still unavailable |
 | Transcript sentence click | X: not directly tested; do not assume every text click seeks |
 | Transcript timestamp click | I: likely a navigation affordance, but exact behavior and play/pause preservation unverified |
 | Active segment | X: current highlight style, word versus block tracking, and timing precision unknown |
@@ -154,7 +155,9 @@ The documented trimming operation is destructive, so it is not needed for the us
 
 ## 8. Summary and action-item behavior
 
-**O:** General/Enhanced is the current baseline. Official material lists sales frameworks, Q&A, customer-success, one-on-one, project, interview and retrospective alternatives. The article claims 17 templates, but that number is not a verified live menu inventory. [S6, S11]
+**O:** General/Enhanced is the current baseline. Official material lists sales frameworks, Q&A, customer-success, one-on-one, project, interview and retrospective alternatives. The article claims 17 templates. The user supplied 16 menu entries, including Stand Up; prefer the account evidence over that count. [S6, S11, U5]
+
+**U5/U6:** Enhanced is marked Most Used and selected. Template choices have icons, titles and descriptions. The adjacent menu offers English, Spanish, Portuguese, German, French, Italian, Dutch, and Auto (transcript language). Auto is a language choice, not automatic template selection. Full template inventory and original observations are in [the evidence update](USER-EVIDENCE-2026-09-18.md#follow-up-template-menu-language-menu-and-seek-synchronization).
 
 **O:** Customization augments the chosen template with instructions. The gear opens an input dialog; regeneration produces a revised result and an option to reuse the instructions on future summaries. Pencil and reset controls appear afterward. This customization is documented for the web app rather than the new desktop app. [S10, R5–R7]
 
@@ -199,7 +202,7 @@ An existing long recording is sufficient research evidence. The user need not st
 | D / U | Live sign-in; marketing/auth redirects; user-supplied top navigation, empty library, two-column shared meeting, summary export, task appearance; live logged-out full-recording content |
 | O / O-image | Main named surfaces; calendar/capture choices; documented search seeking; summary customization; highlight creation/range; share controls; action-item capabilities; official local component appearance |
 | I | Meeting detail is the best centerpiece; coherent long seeded meeting is valuable; typography/layout direction remains provisional |
-| X | Populated library, precise visual tokens, playback/scrolling behavior, source-link seeking, template/task editing, clip recipient interaction, eight-person responsiveness |
+| X | Populated library, precise visual tokens, continuous playback tracking/manual scrolling behavior, transcript/source-link seeking, template/task editing, clip recipient interaction, eight-person responsiveness |
 
 Reference images are stored locally with source URLs in [references/assets.json](references/assets.json) and provenance in [references/README.md](references/README.md). No third-party screenshot has been treated as current evidence. An official Loom embed was located through AI Search documentation, but the video could not be retrieved through web access; it was not treated as watched evidence. A marketing AVIF was downloaded to `/tmp` but could not be decoded by available image tools; it is not used as visual evidence.
 
@@ -207,8 +210,8 @@ Reference images are stored locally with source URLs in [references/assets.json]
 
 Updated after U1–U4/D2. The full shell, meeting layout, summary structure, action-item appearance and basic logged-out recording access are covered. Do not repeat those screenshots. Detailed steps are in [the reduced checklist](USER-EVIDENCE-2026-09-18.md#reduced-manual-checklist).
 
-1. **Playback:** A short recording showing transcript click-to-seek, the active segment, scrolling away/resuming auto-scroll, and clicking one summary source link.
-2. **Templates/tasks:** Open Enhanced and Auto menus, change template, and show what regenerates. On an owned test recording, show task checkbox/edit/assignee behavior; report read-only restrictions on this shared call.
+1. **Playback:** Player → transcript seeking is now user-confirmed. Remaining: transcript click → player seek, active-segment styling, scrolling away/resuming auto-scroll, and one summary source-link click.
+2. **Templates/tasks:** Menu screenshots are complete. Change template and show what regenerates/loading behavior. On an owned test recording, show task checkbox/edit/assignee behavior; report read-only restrictions on this shared call.
 3. **Highlight/clip:** Create and resize one highlight on an owned test recording. Show its annotation and open the clip link in incognito, or provide a non-sensitive test clip link. The supplied recording explicitly has no highlights.
 4. **Capture/library/search:** A short test call can supply joining/in-call evidence and a populated My Calls screenshot. Also show connected calendar/conferencing/capture settings, then search for a spoken word absent from the test call's title. Use existing connection state; no calendar disconnect is needed.
 

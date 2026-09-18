@@ -33,7 +33,7 @@ The right column continues with Action Items, Screen Sharing, and Your Questions
 
 **U3/U4:** The selected template is Enhanced. Summary content has Meeting Purpose, Key Takeaways, Topics with named subtopics and nested bullets, and Next Steps. The full pasted export confirms the lower sections not visible above the fold. Summary is prose and nested lists rather than a grid of dashboard cards.
 
-The summary toolbar includes an outlined Enhanced selector, a second outlined Auto selector with a sparkle icon, and Copy Summary. **The meaning of Auto is unverified**; do not label it a language or generation setting based only on this image. In D2, a separate flag/EN language selector appears instead. Account, preference or rendering differences have not been isolated.
+The summary toolbar includes an outlined Enhanced selector, a second outlined Auto selector with a sparkle icon, and Copy Summary. **Resolved by U6:** Auto means transcript language in the summary language menu. D2 shows an explicit EN selection instead; automatic versus explicit language selection accounts for the different displayed controls, although the cause of that selection difference was not tested.
 
 **U4:** The export labels the recording 80 minutes with no highlights. Its summary links retain `tab=summary` and add a numeric `timestamp` parameter in seconds, including decimal syntax. For example, one technical-update link uses `timestamp=173.0`. This confirms source-linked summary export, but not the exact seek/play behavior after following a link.
 
@@ -57,15 +57,33 @@ The centered meeting workspace and approximate 60:40 proportions can now inform 
 
 **U4/D2:** We now have an actual 80-minute recording reference, not merely a hypothetical long meeting. Action-item timestamps pass one hour and the summary covers late-meeting topics. The DOM contains at least three named speakers: Blair Dunkley, Scent, and Muhammad Ahmad. That is **not** proof of eight participants or a complete participant roster.
 
-**Still unverified:** playback synchronization, scrolling performance across the long transcript, participant overflow, keyboard behavior, template-switch regeneration, clip-range playback and narrow-screen behavior. Do not mistake long content being present for a successful long-meeting usability test.
+**U7 now confirms:** seeking the recording jumps the transcript to the corresponding point. **Still unverified:** continuous playback tracking, transcript-to-player seeking, scrolling performance across the long transcript, participant overflow, keyboard behavior, template-switch regeneration, clip-range playback and narrow-screen behavior. Do not mistake long content being present for a successful long-meeting usability test.
 
 ## Reduced manual checklist
 
 The full authenticated shell, summary anatomy, action-item appearance and basic logged-out full-recording access are now covered. No need to resend these screenshots or repeat an incognito test of this full recording.
 
 1. **Playback behavior:** On this recording, open Transcript, play, click a later timestamp/statement, then scroll away while playback continues. Send a short recording showing whether it seeks, how the active segment looks, and when Resume Auto-Scroll appears. Click one summary source link too. If playback is unavailable, report the error/state.
-2. **Template and task controls:** Open the Enhanced dropdown and the Auto dropdown; capture the choices. Select another template and show the result/loading behavior. On a meeting you own, show an action-item checkbox/edit/assignee interaction if available. If this shared recording is read-only, that restriction is useful evidence; do not change someone else's tasks for the test.
+2. **Template and task controls:** The menu choices are now captured (U5/U6); no repeat screenshots needed. Select another template and show the result/loading behavior. On a meeting you own, show an action-item checkbox/edit/assignee interaction if available. If this shared recording is read-only, that restriction is useful evidence; do not change someone else's tasks for the test.
 3. **A highlight and its recipient:** On a test call you own, hover transcript → plus → Highlight, adjust the range, then copy/open the clip link in incognito. Send the annotation and recipient screenshot or a non-sensitive test clip link. This recording has no highlights, so it cannot establish that flow.
 4. **Recording setup + populated library/search:** Use the visible Start Test Call entry or a short scheduled test meeting. Show calendar/conferencing/capture settings, the joining/in-call state, and an in-call highlight if offered. After it completes, screenshot My Calls with the recording and search for a spoken word absent from its title. This one test can close the recording, populated-dashboard, search and highlight gaps together. If already connected, show the connected state; do not disconnect your calendar just for evidence.
 
 Optional: show an eight-person attendee list if one already exists and one narrow-window meeting screenshot. A new hour-long/eight-person meeting is unnecessary solely for recon.
+
+## Follow-up: template menu, language menu and seek synchronization
+
+- **U5:** [Enhanced menu screenshot](references/user-template-menu.png), user supplied; only the upper portion of the menu is visible. The complete 16-entry inventory below comes from the user's accompanying text, preserved in [USER-TEMPLATE-OBSERVATIONS.txt](USER-TEMPLATE-OBSERVATIONS.txt).
+- **U6:** [Auto language menu screenshot](references/user-language-menu.png), user supplied; shows the language list and selected Auto option.
+- **U7 — user-reported interaction:** Seeking to a position in the recording also jumps the transcript to that point. This confirms player → transcript navigation for the observed call, not the reverse direction or continuous word-level tracking. It was reported by the user, not independently exercised by the agent.
+
+### Observed template inventory
+
+In the order supplied: Enhanced; Sales; Sales - Sandler; Sales - SPICED; Sales - MEDDPICC; Sales - BANT; Customer Success; Customer Success - REACH™; Candidate Interview; Demo; One-on-One; Project Kick-Off; Project Update; Q&A; Retrospective; Stand Up.
+
+Enhanced has a cyan Most Used badge and green selection check. Each visible entry has a left icon, a prominent name and a muted one-line description; sales variants share a chart icon and customer-success variants share a face icon. The menu is a large charcoal overlay with rounded corners. Its content continues beyond the crop; menu scrolling mechanics were not demonstrated. Sixteen entries were supplied; this is the account evidence to use rather than assuming the older help article's claim of seventeen matches this menu.
+
+### Observed summary language inventory
+
+English, Spanish, Portuguese, German, French, Italian and Dutch, each with a flag. A divider separates these from Auto (transcript language), which uses a sparkle icon and is selected with a green check. The open trigger has a filled charcoal background and gray outline. This is a summary-language choice, not an automatic template-selection mode.
+
+Still unknown: whether selecting a template/language starts regeneration immediately, its loading state, duration, persistence, and effect on manual edits. Playback seeking is confirmed in one direction; transcript-click seeking, active styling and follow-scroll behavior still need evidence.

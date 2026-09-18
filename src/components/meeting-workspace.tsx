@@ -29,7 +29,7 @@ export function MeetingWorkspace({ meeting }: { meeting: Meeting }) {
   useEffect(() => { const timestamp = params.get('t'); if (timestamp) { setTab('transcript'); seek(Number(timestamp)); } }, [params]);
   const persist = (next: ActionItem[]) => { setActions(next); localStorage.setItem(`fathom-actions-${meeting.id}`, JSON.stringify(next)); };
   const seek = (seconds: number) => { if (audio.current) audio.current.currentTime = seconds; setCurrent(seconds); };
-  const toggle = () => { if (!audio.current) return; if (audio.current.paused) audio.current.play(); else audio.current.pause(); };
+  const toggle = () => { if (!meeting.media || !audio.current) return; if (audio.current.paused) audio.current.play(); else audio.current.pause(); };
   const matches = useMemo(() => meeting.transcript.filter(s => !query || `${s.text} ${ownerName(meeting, s.speaker)}`.toLowerCase().includes(query.toLowerCase())), [meeting, query]);
   const copy = async (value: string) => navigator.clipboard?.writeText(value);
   const addHighlight = () => { const next = [{ id: `local-${Date.now()}`, title: active.text.slice(0, 56) + (active.text.length > 56 ? '…' : ''), type: 'Highlight', start: active.start, end: active.end, note: `Saved from ${ownerName(meeting, active.speaker)}’s transcript moment.` }, ...highlights]; setHighlights(next); localStorage.setItem(`fathom-highlights-${meeting.id}`, JSON.stringify(next)); };
@@ -37,11 +37,11 @@ export function MeetingWorkspace({ meeting }: { meeting: Meeting }) {
   return <div className="workspace">
     <section className="workspace-main">
       <div className="recording-stage">
-        <audio ref={audio} src={meeting.media} onTimeUpdate={event => setCurrent(event.currentTarget.currentTime)} onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} onEnded={() => setPlaying(false)} />
+        {meeting.media && <audio ref={audio} src={meeting.media} onTimeUpdate={event => setCurrent(event.currentTarget.currentTime)} onPlay={() => setPlaying(true)} onPause={() => setPlaying(false)} onEnded={() => setPlaying(false)} />}
         <div className="recording-top"><span className="live-dot"/>Meeting recording</div>
         <div className="speaker-grid">{meeting.people.map((person, index) => <div key={person.id} className={`speaker-tile ${active.speaker === person.id ? 'speaking' : ''}`} style={{ '--tile': person.color } as React.CSSProperties}><span className="avatar big" style={{ background: person.color }}>{person.initials}</span><span>{person.name}</span>{index === 0 && <i>Host</i>}</div>)}</div>
         <div className="recording-caption"><b>{ownerName(meeting, active.speaker)}</b><span>{active.text}</span></div>
-        <div className="custom-controls"><button aria-label={playing ? 'Pause recording' : 'Play recording'} className="play-control" onClick={toggle}>{playing ? <Pause fill="currentColor" size={19}/> : <Play fill="currentColor" size={19}/>}</button><span>{time(current)}</span><input aria-label="Recording position" type="range" min="0" max={meeting.duration} value={current} onChange={event => seek(Number(event.target.value))}/><span>{time(meeting.duration)}</span><Volume2 size={18}/></div>
+        <div className="custom-controls"><button disabled={!meeting.media} aria-label={playing ? 'Pause recording' : 'Play recording'} className="play-control" onClick={toggle}>{playing ? <Pause fill="currentColor" size={19}/> : <Play fill="currentColor" size={19}/>}</button><span>{time(current)}</span><input aria-label="Recording position" type="range" min="0" max={meeting.duration} value={current} onChange={event => seek(Number(event.target.value))}/><span>{time(meeting.duration)}</span><Volume2 size={18}/></div>
       </div>
       <div className="content-tabs"><button className={tab === 'summary' ? 'selected' : ''} onClick={() => setTab('summary')}>Summary</button><button className={tab === 'transcript' ? 'selected' : ''} onClick={() => setTab('transcript')}>Transcript</button><button disabled>Ask Fathom</button><button className="copy-transcript" onClick={() => copy(meeting.transcript.map(s => `${ownerName(meeting, s.speaker)} (${time(s.start)}): ${s.text}`).join('\n'))}><Clipboard size={17}/>Copy Transcript</button></div>
       {tab === 'summary' ? <Summary meeting={meeting} template={template} setTemplate={setTemplate} seek={seek} copy={copy}/> : <Transcript meeting={meeting} activeId={active.id} query={query} setQuery={setQuery} matches={matches} seek={seek}/>}

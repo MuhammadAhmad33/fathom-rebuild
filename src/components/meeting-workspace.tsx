@@ -1,7 +1,8 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { Check, ChevronDown, Clipboard, Copy, Edit3, ListChecks, Pause, Play, Search, Sparkles, Volume2 } from 'lucide-react';
+import { useSearchParams } from 'next/navigation';
+import { Check, ChevronDown, Clipboard, Copy, Edit3, ListChecks, Pause, Play, Search, Sparkles, Volume2, Highlighter } from 'lucide-react';
 import type { ActionItem, Meeting } from '@/lib/types';
 
 const time = (seconds: number) => `${Math.floor(seconds / 60)}:${String(Math.floor(seconds % 60)).padStart(2, '0')}`;
@@ -15,17 +16,23 @@ export function MeetingWorkspace({ meeting }: { meeting: Meeting }) {
   const [template, setTemplate] = useState<'Enhanced' | 'Project Update'>('Enhanced');
   const [query, setQuery] = useState('');
   const [actions, setActions] = useState<ActionItem[]>(meeting.actions);
+  const [highlights, setHighlights] = useState(meeting.highlights);
+  const [shareState, setShareState] = useState(false);
+  const params = useSearchParams();
   const active = [...meeting.transcript].reverse().find(segment => segment.start <= current) ?? meeting.transcript[0];
 
   useEffect(() => {
     const saved = localStorage.getItem(`fathom-actions-${meeting.id}`);
     if (saved) setActions(JSON.parse(saved));
   }, [meeting.id]);
+  useEffect(() => { const saved = localStorage.getItem(`fathom-highlights-${meeting.id}`); if (saved) setHighlights(JSON.parse(saved)); }, [meeting.id]);
+  useEffect(() => { const timestamp = params.get('t'); if (timestamp) { setTab('transcript'); seek(Number(timestamp)); } }, [params]);
   const persist = (next: ActionItem[]) => { setActions(next); localStorage.setItem(`fathom-actions-${meeting.id}`, JSON.stringify(next)); };
   const seek = (seconds: number) => { if (audio.current) audio.current.currentTime = seconds; setCurrent(seconds); };
   const toggle = () => { if (!audio.current) return; if (audio.current.paused) audio.current.play(); else audio.current.pause(); };
   const matches = useMemo(() => meeting.transcript.filter(s => !query || `${s.text} ${ownerName(meeting, s.speaker)}`.toLowerCase().includes(query.toLowerCase())), [meeting, query]);
   const copy = async (value: string) => navigator.clipboard?.writeText(value);
+  const addHighlight = () => { const next = [{ id: `local-${Date.now()}`, title: active.text.slice(0, 56) + (active.text.length > 56 ? '…' : ''), type: 'Highlight', start: active.start, end: active.end, note: `Saved from ${ownerName(meeting, active.speaker)}’s transcript moment.` }, ...highlights]; setHighlights(next); localStorage.setItem(`fathom-highlights-${meeting.id}`, JSON.stringify(next)); };
 
   return <div className="workspace">
     <section className="workspace-main">
@@ -39,7 +46,7 @@ export function MeetingWorkspace({ meeting }: { meeting: Meeting }) {
       <div className="content-tabs"><button className={tab === 'summary' ? 'selected' : ''} onClick={() => setTab('summary')}>Summary</button><button className={tab === 'transcript' ? 'selected' : ''} onClick={() => setTab('transcript')}>Transcript</button><button disabled>Ask Fathom</button><button className="copy-transcript" onClick={() => copy(meeting.transcript.map(s => `${ownerName(meeting, s.speaker)} (${time(s.start)}): ${s.text}`).join('\n'))}><Clipboard size={17}/>Copy Transcript</button></div>
       {tab === 'summary' ? <Summary meeting={meeting} template={template} setTemplate={setTemplate} seek={seek} copy={copy}/> : <Transcript meeting={meeting} activeId={active.id} query={query} setQuery={setQuery} matches={matches} seek={seek}/>}
     </section>
-    <aside className="workspace-side"><button className="share-button" onClick={() => copy(`${window.location.origin}/share/${meeting.id}`)}>Share <Copy size={19}/></button><div className="side-heading"><h2>ACTION ITEMS</h2><span>{actions.filter(action => !action.done).length} open</span></div><div className="action-tools"><button><Copy size={16}/>Copy for…</button><button><Sparkles size={16}/>Follow-up email</button></div>{actions.map(action => <div className={`action-card ${action.done ? 'done' : ''}`} key={action.id}><button className="checkbox" aria-label={`Mark ${action.text} ${action.done ? 'open' : 'complete'}`} onClick={() => persist(actions.map(item => item.id === action.id ? { ...item, done: !item.done } : item))}>{action.done && <Check size={14}/>}</button><div><input value={action.text} aria-label="Action item text" onChange={event => persist(actions.map(item => item.id === action.id ? { ...item, text: event.target.value } : item))}/><button className="source-time" onClick={() => seek(action.time)}>✦ {time(action.time)} · {ownerName(meeting, action.owner)}</button></div></div>)}<div className="side-divider"/><h2 className="section-title">HIGHLIGHTS</h2>{meeting.highlights.map(highlight => <button className="highlight-side" key={highlight.id} onClick={() => seek(highlight.start)}><span className="highlight-color"/><span><b>{highlight.title}</b><small>{highlight.type} · {time(highlight.start)}</small></span><Play size={15}/></button>)}</aside>
+    <aside className="workspace-side"><button className="share-button" onClick={async () => { await copy(`${window.location.origin}/share/${meeting.id}`); setShareState(true); setTimeout(() => setShareState(false), 2200); }}>Share <Copy size={19}/></button>{shareState && <div className="share-toast">Public link copied — anyone with it can view this meeting.</div>}<div className="side-heading"><h2>ACTION ITEMS</h2><span>{actions.filter(action => !action.done).length} open</span></div><div className="action-tools"><button><Copy size={16}/>Copy for…</button><button><Sparkles size={16}/>Follow-up email</button></div>{actions.map(action => <div className={`action-card ${action.done ? 'done' : ''}`} key={action.id}><button className="checkbox" aria-label={`Mark ${action.text} ${action.done ? 'open' : 'complete'}`} onClick={() => persist(actions.map(item => item.id === action.id ? { ...item, done: !item.done } : item))}>{action.done && <Check size={14}/>}</button><div><input value={action.text} aria-label="Action item text" onChange={event => persist(actions.map(item => item.id === action.id ? { ...item, text: event.target.value } : item))}/><button className="source-time" onClick={() => seek(action.time)}>✦ {time(action.time)} · {ownerName(meeting, action.owner)}</button></div></div>)}<div className="side-divider"/><div className="side-heading"><h2>HIGHLIGHTS</h2><button className="add-highlight" onClick={addHighlight}><Highlighter size={15}/>Highlight moment</button></div>{highlights.map(highlight => <button className="highlight-side" key={highlight.id} onClick={() => seek(highlight.start)}><span className="highlight-color"/><span><b>{highlight.title}</b><small>{highlight.type} · {time(highlight.start)}</small></span><Play size={15}/></button>)}</aside>
   </div>;
 }
 

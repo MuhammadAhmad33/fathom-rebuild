@@ -131,8 +131,8 @@ The dark/light FAQ says switching was unavailable, but its edit date is August 2
 |---|---|
 | Search-result Play | O: seeks to the matching spoken moment. [S7] |
 | Player seeking | U7: user reports recording seek also jumps transcript to the corresponding point; independently exercised behavior still unavailable |
-| Transcript sentence click | X: not directly tested; do not assume every text click seeks |
-| Transcript timestamp click | I: likely a navigation affordance, but exact behavior and play/pause preservation unverified |
+| Transcript sentence click | U8: user confirms transcript text/timestamp clicks seek the recording; agent has not independently exercised this |
+| Transcript timestamp click | U8: seeking confirmed by user; play/pause preservation remains unverified |
 | Active segment | X: current highlight style, word versus block tracking, and timing precision unknown |
 | Auto-scroll | D2: rendered DOM contains Resume Auto-Scroll; X: when it appears and how following resumes remain untested |
 | Speaker identity | O: product material promises speaker attribution; Zoom capture mode can affect it. [S5, S23] |
@@ -202,7 +202,7 @@ An existing long recording is sufficient research evidence. The user need not st
 | D / U | Live sign-in; marketing/auth redirects; user-supplied top navigation, empty library, two-column shared meeting, summary export, task appearance; live logged-out full-recording content |
 | O / O-image | Main named surfaces; calendar/capture choices; documented search seeking; summary customization; highlight creation/range; share controls; action-item capabilities; official local component appearance |
 | I | Meeting detail is the best centerpiece; coherent long seeded meeting is valuable; typography/layout direction remains provisional |
-| X | Populated library, precise visual tokens, continuous playback tracking/manual scrolling behavior, transcript/source-link seeking, template/task editing, clip recipient interaction, eight-person responsiveness |
+| X | Populated library, precise visual tokens, continuous playback tracking/manual scrolling behavior, summary source-link seeking, template/task editing, clip recipient interaction, eight-person responsiveness |
 
 Reference images are stored locally with source URLs in [references/assets.json](references/assets.json) and provenance in [references/README.md](references/README.md). No third-party screenshot has been treated as current evidence. An official Loom embed was located through AI Search documentation, but the video could not be retrieved through web access; it was not treated as watched evidence. A marketing AVIF was downloaded to `/tmp` but could not be decoded by available image tools; it is not used as visual evidence.
 
@@ -210,7 +210,7 @@ Reference images are stored locally with source URLs in [references/assets.json]
 
 Updated after U1–U4/D2. The full shell, meeting layout, summary structure, action-item appearance and basic logged-out recording access are covered. Do not repeat those screenshots. Detailed steps are in [the reduced checklist](USER-EVIDENCE-2026-09-18.md#reduced-manual-checklist).
 
-1. **Playback:** Player → transcript seeking is now user-confirmed. Remaining: transcript click → player seek, active-segment styling, scrolling away/resuming auto-scroll, and one summary source-link click.
+1. **Playback:** Player → transcript seeking is now user-confirmed. Reverse transcript → player seeking is also user-confirmed (U8). Remaining: active-segment styling, scrolling away/resuming auto-scroll, and one summary source-link click.
 2. **Templates/tasks:** Menu screenshots are complete. Change template and show what regenerates/loading behavior. On an owned test recording, show task checkbox/edit/assignee behavior; report read-only restrictions on this shared call.
 3. **Highlight/clip:** Create and resize one highlight on an owned test recording. Show its annotation and open the clip link in incognito, or provide a non-sensitive test clip link. The supplied recording explicitly has no highlights.
 4. **Capture/library/search:** A short test call can supply joining/in-call evidence and a populated My Calls screenshot. Also show connected calendar/conferencing/capture settings, then search for a spoken word absent from the test call's title. Use existing connection state; no calendar disconnect is needed.

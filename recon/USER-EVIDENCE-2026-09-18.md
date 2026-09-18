@@ -57,7 +57,7 @@ The centered meeting workspace and approximate 60:40 proportions can now inform 
 
 **U4/D2:** We now have an actual 80-minute recording reference, not merely a hypothetical long meeting. Action-item timestamps pass one hour and the summary covers late-meeting topics. The DOM contains at least three named speakers: Blair Dunkley, Scent, and Muhammad Ahmad. That is **not** proof of eight participants or a complete participant roster.
 
-**U7 now confirms:** seeking the recording jumps the transcript to the corresponding point. **Still unverified:** continuous playback tracking, transcript-to-player seeking, scrolling performance across the long transcript, participant overflow, keyboard behavior, template-switch regeneration, clip-range playback and narrow-screen behavior. Do not mistake long content being present for a successful long-meeting usability test.
+**U7 now confirms:** seeking the recording jumps the transcript to the corresponding point. **Still unverified:** continuous playback tracking, scrolling performance across the long transcript, participant overflow, keyboard behavior, template-switch regeneration, clip-range playback and narrow-screen behavior. Do not mistake long content being present for a successful long-meeting usability test.
 
 ## Reduced manual checklist
 
@@ -74,7 +74,7 @@ Optional: show an eight-person attendee list if one already exists and one narro
 
 - **U5:** [Enhanced menu screenshot](references/user-template-menu.png), user supplied; only the upper portion of the menu is visible. The complete 16-entry inventory below comes from the user's accompanying text, preserved in [USER-TEMPLATE-OBSERVATIONS.txt](USER-TEMPLATE-OBSERVATIONS.txt).
 - **U6:** [Auto language menu screenshot](references/user-language-menu.png), user supplied; shows the language list and selected Auto option.
-- **U7 — user-reported interaction:** Seeking to a position in the recording also jumps the transcript to that point. This confirms player → transcript navigation for the observed call, not the reverse direction or continuous word-level tracking. It was reported by the user, not independently exercised by the agent.
+- **U7 — user-reported interaction:** Seeking to a position in the recording also jumps the transcript to that point. This initially confirmed player → transcript navigation; U8 below subsequently confirms the reverse direction. Continuous word-level tracking remains unverified. It was reported by the user, not independently exercised by the agent.
 
 ### Observed template inventory
 
@@ -86,4 +86,8 @@ Enhanced has a cyan Most Used badge and green selection check. Each visible entr
 
 English, Spanish, Portuguese, German, French, Italian and Dutch, each with a flag. A divider separates these from Auto (transcript language), which uses a sparkle icon and is selected with a green check. The open trigger has a filled charcoal background and gray outline. This is a summary-language choice, not an automatic template-selection mode.
 
-Still unknown: whether selecting a template/language starts regeneration immediately, its loading state, duration, persistence, and effect on manual edits. Playback seeking is confirmed in one direction; transcript-click seeking, active styling and follow-scroll behavior still need evidence.
+Still unknown: whether selecting a template/language starts regeneration immediately, its loading state, duration, persistence, and effect on manual edits. Playback seeking is now user-confirmed in both directions (U7/U8); active styling and follow-scroll behavior still need evidence.
+
+## Follow-up U8: bidirectional seeking confirmed
+
+The user answered YES when asked whether clicking transcript text/timestamps seeks the recording. Together with U7, this confirms both directions of navigation as user-reported behavior. It does not establish play/pause preservation, continuous word highlighting, or scroll-follow interruption rules. The user also authorized moving from reconnaissance toward the build and requested a technology-stack recommendation.

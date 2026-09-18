@@ -1,0 +1,13 @@
+# Local Codex capture infrastructure is committed for the assignment but is
+# not application code and must not be included in the Next.js deployment.
+scripts/
+.agent-logs/
+recon/
+CAPTURE-TEST.md
+AGENTS.md
+
+# Local development and generated artifacts
+.next/
+node_modules/
+playwright-report/
+test-results/

@@ -6,6 +6,7 @@ import fcntl
 import json
 import os
 from pathlib import Path
+import re
 import time
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -61,7 +62,23 @@ def export(path):
         previous = dest.read_text()
         old_body = previous.split('\n\n---\n\n', 1)[1]
         if not body.startswith(old_body):
-            raise ValueError(f'Refusing to change existing entries: {dest}')
+            # A rollout can be resumed or migrated by Codex. In that case its
+            # regenerated transcript representation may not be a byte prefix
+            # of the original export. Never rewrite prior entries; append only
+            # records whose stable kind/number/timestamp key is new.
+            recorded = set(re.findall(
+                r'\[LOG_ENTRY type=(\w+) num=(\d+) session=[^\]]+\]\n'
+                r'timestamp: ([^\n]+)', old_body))
+            additions = []
+            for kind, n, ts, entry_model, entry_text in entries:
+                if (kind, str(n), ts) not in recorded:
+                    additions.append(
+                        f'[LOG_ENTRY type={kind} num={n} session={sid[:8]}]\n'
+                        f'timestamp: {ts}\nmodel: {entry_model}\n\n'
+                        f'{entry_text}\n\n\n')
+            if not additions:
+                return
+            body = old_body + ''.join(additions)
         if previous == header + body:
             return
     # Only metadata changes; existing entry bytes must remain an exact prefix.

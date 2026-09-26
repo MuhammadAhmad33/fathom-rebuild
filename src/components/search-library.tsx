@@ -2,10 +2,10 @@
 import { useMemo } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { MeetingList } from '@/components/meeting-list';
-import { meetings } from '@/lib/meetings';
+import type { Meeting } from '@/lib/types';
 import { Search } from 'lucide-react';
 
-export function SearchLibrary() {
+export function SearchLibrary({ meetings }: { meetings: Meeting[] }) {
   const query = useSearchParams().get('q')?.trim() ?? '';
   const results = useMemo(() => !query ? meetings : meetings.filter(meeting => `${meeting.title} ${meeting.description} ${meeting.people.map(person => person.name).join(' ')} ${meeting.transcript.map(segment => segment.text).join(' ')}`.toLowerCase().includes(query.toLowerCase())), [query]);
   const transcriptHits = useMemo(() => query ? meetings.flatMap(meeting => meeting.transcript.filter(segment => segment.text.toLowerCase().includes(query.toLowerCase())).slice(0, 3).map(segment => ({ meeting, segment }))).slice(0, 6) : [], [query]);

@@ -1,65 +1,66 @@
-# Fathom rebuild
+# Meeting intelligence
 
-A focused rebuild of Fathom’s post-meeting experience for the 8x Software Engineer assignment.
-
-**Live demo:** [fathom-rebuild-kappa.vercel.app](https://fathom-rebuild-kappa.vercel.app/)
-
-## What is built
-
-- Populated meeting library with 10 completed meetings
-- Meeting workspace with a custom HTML5 media player and timestamped transcript
-- Two-way review flow: transcript text/timestamps seek the player; playback marks the active segment
-- Enhanced and Project Update summaries with linked source timestamps
-- Editable, locally persisted action items
-- Search across meeting titles, participants, and transcript content
-- Deterministic, transcript-grounded Ask Fathom answers with seekable citations
-- Highlights, short clip creation, and public read-only sharing
-- Lightweight Team Calls, Playlists, Alerts, Settings, Refer, Help, and profile states
-
-The main showcase is **Atlas Launch · Product & Engineering**: a seeded 58-minute meeting with eight participants, a dense multi-speaker transcript, decisions, action items, highlights, and a public share route.
-
-## Key routes
-
-- `/` → redirects straight to the populated My Calls product
-- `/meetings/atlas-launch` — showcase workspace
-- `/share/atlas-launch` — anonymous public meeting view
-- `/share/atlas-launch?clip=launch-decision` — anonymous public clip view
-
-Public share views do not require authentication or creator browser state.
+An evidence-led meeting workspace: every decision, action, key moment, and Ask answer links back to the transcript and recording that support it.
 
 ## Architecture
 
-- Next.js App Router
-- TypeScript
-- Tailwind CSS
-- Lucide icons
-- Native HTML5 audio with custom player controls
-- Typed seeded application data
-- `localStorage` for lightweight edits, settings, and created highlights
-- Vercel deployment
+The application stays in one Next.js repository:
 
-There is intentionally no separate backend, database, authentication layer, queue, or third-party API dependency in the product path.
+```
+Next.js UI → Next.js route handlers / server services → Supabase → PostgreSQL
+```
 
-## Product decisions
+- Next.js App Router, TypeScript, and native HTML5 audio
+- Supabase PostgreSQL schema and server-only service-role client
+- Route handlers for meetings, action items, highlights, shares, and Ask this meeting
+- OpenAI Responses API with strict structured output for transcript-grounded answers
+- Lucide icons and the existing responsive UI system
 
-The 24-hour window was spent on the post-meeting experience: playback/transcript synchronization, summaries, action items, search, Ask Fathom, highlights/clips, and public sharing.
+No service key or OpenAI key reaches the browser. There is intentionally no separate backend service, authentication, calendar integration, meeting bot, or transcription pipeline.
 
-Recording/capture is intentionally stubbed, as permitted by the assignment brief. Meeting and transcript content is seeded. Ask Fathom is deterministic and grounded in that seeded transcript; it does not call an LLM. Calendar connections, Zoom/Meet/Teams bots, real recording, and transcription infrastructure are deliberately out of scope.
+## Product behavior
 
-## Local setup
+- Meetings, participants, transcripts, decisions, actions, key moments, and shares load from PostgreSQL.
+- Completing or editing an action item, creating or deleting a key moment, and creating a share persist through the API and survive refresh.
+- Ask this meeting loads the actual transcript, requests a structured answer, and resolves model-returned segment IDs against database rows. The model never supplies timestamps.
+- Source links reveal the Conversation view, seek the recording, and focus the supporting segment.
+- Public meeting and clip links use database share tokens and work without a session.
+
+The seeded showcase is **Atlas Launch · Product & Engineering**, a 58-minute, eight-participant meeting with transcript evidence, decisions, actions, key moments, and public links.
+
+## Database setup
+
+1. Create a Supabase project.
+2. Run [`supabase/migrations/0001_meeting_intelligence.sql`](supabase/migrations/0001_meeting_intelligence.sql) in the SQL editor.
+3. Run [`supabase/seed.sql`](supabase/seed.sql) to load the relational demo data.
+4. Copy `.env.example` to `.env.local` and set the project URL, service-role key, and OpenAI key. Never commit `.env.local`.
+
+```
+SUPABASE_URL=https://<project>.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=<server-only-service-role-key>
+OPENAI_API_KEY=<server-only-openai-key>
+OPENAI_MODEL=gpt-5-mini
+```
+
+## Local development
 
 ```bash
 npm install
 npm run dev
-```
-
-Then open [http://localhost:3000](http://localhost:3000).
-
-```bash
 npm run typecheck
 npm run build
 ```
 
+Set the same environment variables in Vercel before deploying. The original recording/capture layer remains intentionally stubbed; `public/media/atlas-launch.m4a` is a demo media track. Demo meeting content is seeded into PostgreSQL, never returned from runtime fixtures.
+
+## Public routes
+
+- `/meetings/atlas-launch` — private workspace route
+- `/share/atlas-launch` — seeded public meeting token
+- `/share/launch-decision` — seeded public clip token
+
+New public share links are generated by the API and stored in `shares`.
+
 ## Agent capture
 
-Required prompt/final-response capture logs are committed in [`.agent-logs/`](.agent-logs/). Capture setup verification is documented in [`CAPTURE-TEST.md`](CAPTURE-TEST.md). The committed capture and reconnaissance material is excluded from the Vercel upload only; it remains part of the public repository submission.
+The assignment capture log is committed in [`.agent-logs/`](.agent-logs/); setup verification is in [`CAPTURE-TEST.md`](CAPTURE-TEST.md).

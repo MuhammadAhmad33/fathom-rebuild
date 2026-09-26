@@ -12,8 +12,7 @@ Next.js UI → Next.js route handlers / server services → Supabase → Postgre
 
 - Next.js App Router, TypeScript, and native HTML5 audio
 - Supabase PostgreSQL schema and server-only service-role client
-- Route handlers for meetings, action items, highlights, shares, and Ask this meeting
-- OpenAI Responses API with strict structured output for transcript-grounded answers
+- Route handlers for meetings, action items, highlights, shares, and transcript retrieval
 - Lucide icons and the existing responsive UI system
 
 No service key or OpenAI key reaches the browser. There is intentionally no separate backend service, authentication, calendar integration, meeting bot, or transcription pipeline.
@@ -22,7 +21,7 @@ No service key or OpenAI key reaches the browser. There is intentionally no sepa
 
 - Meetings, participants, transcripts, decisions, actions, key moments, and shares load from PostgreSQL.
 - Completing or editing an action item, creating or deleting a key moment, and creating a share persist through the API and survive refresh.
-- Ask this meeting loads the actual transcript, requests a structured answer, and resolves model-returned segment IDs against database rows. The model never supplies timestamps.
+- Find in this meeting loads the actual transcript and returns ranked, verbatim database excerpts with their source segment IDs, speakers, and timestamps. It uses no paid AI API.
 - Source links reveal the Conversation view, seek the recording, and focus the supporting segment.
 - Public meeting and clip links use database share tokens and work without a session.
 
@@ -31,15 +30,13 @@ The seeded showcase is **Atlas Launch · Product & Engineering**, a 58-minute, e
 ## Database setup
 
 1. Create a Supabase project.
-2. Run [`supabase/migrations/0001_meeting_intelligence.sql`](supabase/migrations/0001_meeting_intelligence.sql) in the SQL editor.
+2. Run [`supabase/migrations/0001_meeting_intelligence.sql`](supabase/migrations/0001_meeting_intelligence.sql), then [`supabase/migrations/0002_action_due_dates.sql`](supabase/migrations/0002_action_due_dates.sql), in the SQL editor.
 3. Run [`supabase/seed.sql`](supabase/seed.sql) to load the relational demo data.
-4. Copy `.env.example` to `.env.local` and set the project URL, service-role key, and OpenAI key. Never commit `.env.local`.
+4. Copy `.env.example` to `.env.local` and set the project URL and service-role key. Never commit `.env.local`.
 
 ```
 SUPABASE_URL=https://<project>.supabase.co
 SUPABASE_SERVICE_ROLE_KEY=<server-only-service-role-key>
-OPENAI_API_KEY=<server-only-openai-key>
-OPENAI_MODEL=gpt-5-mini
 ```
 
 ## Local development
